@@ -1,0 +1,32 @@
+name: Update Notion Stock Portfolio
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # 30분마다 실행(UTC 기준)
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run updater
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          BASE_CURRENCY: USD
+          FX_RATE: "1.0"
+        run: |
+          python notion_portfolio_updater.py
