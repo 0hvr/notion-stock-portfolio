@@ -1,4 +1,4 @@
-notion-client>=2.2.1
+notion-client==2.2.1
 yfinance>=0.2.43
 python-dotenv>=1.0.1
 pandas>=2.0.0
