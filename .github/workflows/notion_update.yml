@@ -1,6 +1,6 @@
 name: Update Notion Stock Portfolio
 
-on:
+# 계속 알람이 와서 잠시 멈춰둠 on:
   schedule:
     - cron: "*/30 * * * *"   # 30분마다 실행(UTC 기준)
   workflow_dispatch:
